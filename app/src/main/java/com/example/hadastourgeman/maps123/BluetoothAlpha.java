@@ -22,12 +22,12 @@ import android.widget.TextView;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Timer;
 import java.util.UUID;
 
 public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private static final String TAG = "BluetoothAlpha";
-
     BluetoothAdapter mBluetoothAdapter;
     Button btnEnableDisable_Discoverable;
 
@@ -37,7 +37,7 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
     Button btnSend;
 
     Intent t;
-    EditText etSend;
+
 
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
@@ -53,6 +53,18 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
     TextView textView;
 
     StringBuilder message;
+
+
+    int i, rngl, rngr, head;
+    byte elev;
+    int n=1;
+    String strngl, strngr, sthead, stelev;
+    String string="00000000";
+    final static int RQS_TIME = 1;
+    Thread thread;
+
+    Timer timer = new Timer();
+
 
 
     // Create a BroadcastReceiver for ACTION_FOUND
@@ -187,16 +199,23 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bluetooth_alpha);
+        setContentView(R.layout.activity_main);
         Button btnONOFF = (Button) findViewById(R.id.btnONOFF);
         btnEnableDisable_Discoverable = (Button) findViewById(R.id.btnDiscoverable_on_off);
         lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
         textView= (TextView) findViewById(R.id.textView);
-
         btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
         btnSend = (Button) findViewById(R.id.btnSend);
-        etSend = (EditText) findViewById(R.id.editText);
+
+
+
+        rngl=0;
+        rngr=200;
+        head=0;
+        elev=-90;
+
+
         message=new StringBuilder();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReciver , new IntentFilter("incomingMessage"));
 
@@ -227,9 +246,12 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                byte[] bytes = etSend.getText().toString().getBytes(Charset.defaultCharset());
+
+                //send
+                byte[] bytes = string.getBytes(Charset.defaultCharset());
                 mBluetoothConnection.write(bytes);
-                etSend.setText("");
+
+
             }
         });
 
@@ -365,5 +387,9 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
             mBluetoothConnection = new BluetoothConnectionService(BluetoothAlpha.this);
         }
     }
+
+
+
+
 
 }
