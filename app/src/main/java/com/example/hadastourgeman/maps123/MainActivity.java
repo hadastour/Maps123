@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         String date = new SimpleDateFormat("MMddyyyy", Locale.getDefault()).format(new Date());
 //        dbRecRef.setValue(date);
         DatabaseReference dbDatarecRef=dbRecRef.child(date);
-        dbDatarecRef.child("2").setValue("bye");
+        dbDatarecRef.child("2").setValue("good");
         //        Boolean datarec=true;
 //        if(datarec) dbDatarecRef.setValue("Text");
 
