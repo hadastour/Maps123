@@ -239,7 +239,6 @@ public class MainActivity extends AppCompatActivity {
         elev=-90;
 
         i = 0;
-
         final DatabaseReference count = ref.child("count");
         count.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
