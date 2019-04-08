@@ -227,9 +227,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void rec(View view) {
         String date = new SimpleDateFormat("MMddyyyy", Locale.getDefault()).format(new Date());
-        dbRecRef.setValue(date);
-        DatabaseReference dbDatarecRef=dbRecRef.child("date");
-        dbDatarecRef.setValue("hi");
+//        dbRecRef.setValue(date);
+        DatabaseReference dbDatarecRef=dbRecRef.child(date);
+        dbDatarecRef.child("2").setValue("bye");
         //        Boolean datarec=true;
 //        if(datarec) dbDatarecRef.setValue("Text");
 
