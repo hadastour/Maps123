@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     SeekBar sk2;
     final static int RQS_TIME = 1;
     int[] values;
+     int mone;
 
     TextView tvAlarmPrompt;
     TextView textView;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
 
 
@@ -121,6 +123,20 @@ public class MainActivity extends AppCompatActivity {
             arr[i/2] = Integer.parseInt(num , 16);
         }
         return arr;
+    }
+    public void getArray(String Text)
+    {
+        while (Text != null) {
+            if (check(Text)) {
+                values = buildArray(Text);
+                des1.setText(""+values[0]);
+                des2.setText(""+values[1]);
+                sk1.setProgress(values[2]);
+                sk2.setProgress(values[3]);
+
+
+            }
+        }
     }
 
         /*BroadcastReceiver mReciver = new BroadcastReceiver() {
@@ -209,27 +225,20 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void getArray(String Text)
-    {
-        while (Text != null) {
-            if (check(Text)) {
-                values = buildArray(Text);
-                des1.setText(""+values[0]);
-                des2.setText(""+values[1]);
-                sk1.setProgress(values[2]);
-                sk2.setProgress(values[3]);
 
-
-            }
-        }
-    }
 
 
     public void rec(View view) {
         String date = new SimpleDateFormat("MMddyyyy", Locale.getDefault()).format(new Date());
 //        dbRecRef.setValue(date);
-        DatabaseReference dbDatarecRef=dbRecRef.child(date);
-        dbDatarecRef.child("2").setValue("good");
+        mone=1;
+        DatabaseReference dbDatarecRef = dbRecRef.child(date);
+               while (mone<=50) {
+
+                   dbDatarecRef.child("" + mone).setValue("try");
+                   mone++;
+               }
+
         //        Boolean datarec=true;
 //        if(datarec) dbDatarecRef.setValue("Text");
 
@@ -312,8 +321,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toblue(View view) {
-        Intent intent=new Intent(this, BluetoothAlpha.class);
-        startActivity(intent);
+        Intent n=new Intent(this,BluetoothAlpha.class);
+        startActivity(n);
+        Toast.makeText(MainActivity.this, "hello", Toast.LENGTH_LONG).show();
     }
 
     BroadcastReceiver mReciver = new BroadcastReceiver() {
