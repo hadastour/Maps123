@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
 
     Button btnStartConnection;
     Button btnSend;
+    Button tomain;
 
     Intent t;
     EditText etSend;
@@ -197,6 +199,7 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
 
         btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
         btnSend = (Button) findViewById(R.id.btnSend);
+        tomain = (Button) findViewById(R.id.tomain);
         etSend = (EditText) findViewById(R.id.editText);
         message=new StringBuilder();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReciver , new IntentFilter("incomingMessage"));
@@ -367,4 +370,9 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
         }
     }
 
+    public void tomain2(View view) {
+        Intent n=new Intent(this,MainActivity.class);
+        startActivity(n);
+        Toast.makeText(BluetoothAlpha.this, "bye", Toast.LENGTH_LONG).show();
+    }
 }

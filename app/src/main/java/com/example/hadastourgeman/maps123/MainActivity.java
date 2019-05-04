@@ -48,18 +48,19 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference mRootRef;
     DatabaseReference dbRecRef;
     String string = "1";
-    StringBuilder message = null;
+    StringBuilder message ;
     BluetoothConnectionService mBluetoothConnection;
     TextView des1;
     TextView des2;
     SeekBar sk1;
     SeekBar sk2;
+    String m="11";
     final static int RQS_TIME = 1;
     int[] values;
      int mone;
 
     TextView tvAlarmPrompt;
-    TextView textView;
+    TextView tv;
     int i, rngl, rngr, head;
     byte elev;
     String strngl, strngr, sthead, stelev, strAnotherOne;
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        tv= (TextView) findViewById(R.id.tv);
         des1= (TextView) findViewById(R.id.des1);
         des2= (TextView) findViewById(R.id.des2);
         //textView= (TextView) findViewById(R.id.textView);
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
         message = new StringBuilder();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReciver, new IntentFilter("incomingMessage"));
+
+
 
 
 
@@ -124,20 +127,15 @@ public class MainActivity extends AppCompatActivity {
         }
         return arr;
     }
-    public void getArray(String Text)
-    {
-        while (Text != null) {
-            if (check(Text)) {
-                values = buildArray(Text);
-                des1.setText(""+values[0]);
-                des2.setText(""+values[1]);
-                sk1.setProgress(values[2]);
-                sk2.setProgress(values[3]);
+  //  public void getArray(String Text)
+    //{
 
 
-            }
-        }
-    }
+
+
+      //      }
+        //}
+
 
         /*BroadcastReceiver mReciver = new BroadcastReceiver() {
             @Override
@@ -330,9 +328,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String Text = intent.getStringExtra("theMessage");
-            //  message.append(Text +"/");
-            //textView.setText(message);
-            Toast.makeText(MainActivity.this, Text, Toast.LENGTH_LONG).show();
+
+                message.append(Text + "/");
+
+                des1.setText(message);
+                tv.setText(""+m);
+
+           Toast.makeText(MainActivity.this, Text, Toast.LENGTH_LONG).show();
+         //   if (check(Text)) {
+           //     values = buildArray(Text);
+             //   des1.setText(""+values[0]);
+               // des2.setText(""+values[1]);
+                //sk1.setProgress(values[2]);
+                //sk2.setProgress(values[3]);
+     //   }
         }
     };
 }
