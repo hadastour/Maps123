@@ -78,23 +78,22 @@ public class MainActivity extends AppCompatActivity {
         //textView= (TextView) findViewById(R.id.textView);
         sk1= (SeekBar) findViewById(R.id.sk1);
         sk2= (SeekBar) findViewById(R.id.sk2);
-        Calendar calNow = Calendar.getInstance();
-        Calendar calSet = (Calendar) calNow.clone();
-
-        setContentView(R.layout.activity_main);
-
-        mRootRef = FirebaseDatabase.getInstance().getReference();
-        dbRecRef=mRootRef.child("dataRec");
 
         rngl=0;
         rngr=200;
         head=0;
         elev=-90;
 
+        mRootRef = FirebaseDatabase.getInstance().getReference();
+        dbRecRef=mRootRef.child("dataRec");
+
+        Calendar calNow = Calendar.getInstance();
+        Calendar calSet = (Calendar) calNow.clone();
 
 
         message = new StringBuilder();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReciver, new IntentFilter("incomingMessage"));
+        tv.setText("111");
 
 
 
@@ -331,8 +330,7 @@ public class MainActivity extends AppCompatActivity {
 
                 message.append(Text + "/");
 
-                des1.setText(message);
-                tv.setText(""+m);
+                des1.setText(""+message);
 
            Toast.makeText(MainActivity.this, Text, Toast.LENGTH_LONG).show();
          //   if (check(Text)) {
