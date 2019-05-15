@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference mRootRef;
     DatabaseReference dbRecRef;
     String string = "1";
-    StringBuilder message ;
+   public StringBuilder message ;
     BluetoothConnectionService mBluetoothConnection;
     TextView des1;
     TextView des2;
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         Calendar calNow = Calendar.getInstance();
         Calendar calSet = (Calendar) calNow.clone();
 
-        setContentView(R.layout.activity_main);
+
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
         dbRecRef=mRootRef.child("dataRec");
@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
         message = new StringBuilder();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReciver, new IntentFilter("incomingMessage"));
+
+
 
 
 
@@ -216,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
     private void start() {
         Calendar calNow = Calendar.getInstance();
         Calendar calSet = (Calendar) calNow.clone();
-        calSet.set(Calendar.SECOND, calSet.get(Calendar.SECOND)+2);
+        calSet.set(Calendar.SECOND, calSet.get(Calendar.SECOND)+5);
         setAlarm(calSet);
 
     }
@@ -233,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference dbDatarecRef = dbRecRef.child(date);
                while (mone<=50) {
 
-                   dbDatarecRef.child("" + mone).setValue("try");
+                   dbDatarecRef.child("" + mone).setValue(""+message);
                    mone++;
                }
 
@@ -329,19 +331,21 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String Text = intent.getStringExtra("theMessage");
 
-                message.append(Text + "/");
+                message.setLength(0);
+                message.append(Text + "");
 
-                des1.setText(message);
-                tv.setText(""+m);
 
-           Toast.makeText(MainActivity.this, Text, Toast.LENGTH_LONG).show();
-         //   if (check(Text)) {
-           //     values = buildArray(Text);
-             //   des1.setText(""+values[0]);
-               // des2.setText(""+values[1]);
-                //sk1.setProgress(values[2]);
-                //sk2.setProgress(values[3]);
-     //   }
+                tv.setText(Text);
+
+
+
+           if (check(Text)) {
+                values = buildArray(Text);
+                des1.setText(""+values[0]);
+                des2.setText(""+values[1]);
+                sk1.setProgress(values[2]);
+                sk2.setProgress(values[3]);
+       }
         }
     };
 }
