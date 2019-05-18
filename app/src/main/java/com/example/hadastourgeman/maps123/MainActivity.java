@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
@@ -230,93 +231,32 @@ public class MainActivity extends AppCompatActivity {
         String date = new SimpleDateFormat("MMddyyyy", Locale.getDefault()).format(new Date());
 //        dbRecRef.setValue(date);
         mone=1;
-        DatabaseReference dbDatarecRef = dbRecRef.child(date);
-               while (mone<=50) {
+      final DatabaseReference dbDatarecRef = dbRecRef.child(date);
+        new CountDownTimer(5000, 100) {
 
-                   dbDatarecRef.child("" + mone).setValue(""+message);
-                   mone++;
+            public void onTick(long millisUntilFinished) {
+
+                dbDatarecRef.child("" + mone).setValue("" + message);
+                mone++;
+            }
+
+            public void onFinish() {
+                Toast.makeText(MainActivity.this, "done", Toast.LENGTH_LONG).show();
+            }
+        }.start();
+
+
+
                }
 
-        //        Boolean datarec=true;
-//        if(datarec) dbDatarecRef.setValue("Text");
-
-     /*   rngl=0;
-        rngr=200;
-        head=0;
-        elev=-90;
-
-        i = 0;
-        final DatabaseReference count = ref.child("count");
-        count.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getValue() != null)
-                    count.setValue(0);
-                else
-                    count.setValue(dataSnapshot.getValue(Integer.class) + 1);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        count.setValue(24);
-
-        // Create the Handler
-        final Handler handler = new Handler();
-
-// Define the code block to be executed
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                // Insert custom code here
-                update();
-
-                handler.postDelayed(this, 5000);
-            }
-        };
-
-// Start the Runnable immediately
-        handler.post(runnable);
 
 
 
 
-        //ExecutorService service = Executors.newSingleThreadExecutor();
 
-        ref.child("record");
 
-        try {
-            Runnable r = new Runnable() {
-                @Override
-                public void run() {
-                    // Database task
-                    for (int i = 0; i < 50; i++)
-                    {
-                        Data d = new Data(values[0], values[1], values[2], values[3]);
-                        ref.child(""+i).setValue(d);
-                    }
-                }
-            };
 
-            Future<?> f = service.submit(r);
 
-            f.get(5, TimeUnit.SECONDS);     // attempt the task for two minutes
-        }
-        catch (final InterruptedException e) {
-            // The thread was interrupted during sleep, wait or join
-        }
-        catch (final TimeoutException e) {
-            // Took too long!
-        }
-        catch (final ExecutionException e) {
-            // An exception from within the Runnable task
-        }
-        finally {
-            service.shutdown();
-        } */
-    }
 
     public void toblue(View view) {
         Intent n=new Intent(this,BluetoothAlpha.class);
