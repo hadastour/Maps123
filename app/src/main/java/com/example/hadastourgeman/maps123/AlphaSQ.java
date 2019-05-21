@@ -32,6 +32,7 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
     DatabaseReference ref;
 
     List<String> dates;
+    List<String> values;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
         ref = FirebaseDatabase.getInstance().getReference("dataRec");
 
         dates = new ArrayList<>();
+        values = new ArrayList<>();
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -61,17 +63,38 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, dates);
 
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(spinnerAdapter);
 
         spinner.setOnItemSelectedListener(this);
+
     }
 
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        ref.child(dates.get(position)).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                values.clear();
+                for (DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    String value = ds.getValue(String.class);
+                    values.add(value);
+                }
+                ArrayAdapter<String> listAdapter = new ArrayAdapter(AlphaSQ.this,
+                        android.R.layout.simple_spinner_item, values);
+                listView.setAdapter(listAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
