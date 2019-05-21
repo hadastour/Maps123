@@ -371,7 +371,7 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
     }
 
     public void tomain2(View view) {
-        Intent n=new Intent(this,MainActivity.class);
+        Intent n=new Intent(this,AlphaSQ.class);
         startActivity(n);
         Toast.makeText(BluetoothAlpha.this, "bye", Toast.LENGTH_LONG).show();
     }
