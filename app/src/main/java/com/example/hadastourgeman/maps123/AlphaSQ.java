@@ -1,5 +1,6 @@
 package com.example.hadastourgeman.maps123;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,11 +30,11 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
 
     Spinner spinner;
     ListView listView;
-
     DatabaseReference ref;
 
-    List<String> dates;
+    List<String> dates=new ArrayList<>();
     List<String> values;
+    String[] fruit = {"Apple", "Banana", "Orange", "Grapes"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +52,9 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String date = ds.getKey();
+                    Toast.makeText(AlphaSQ.this, date, Toast.LENGTH_LONG).show();
                     dates.add(date);
                 }
             }
@@ -62,29 +64,30 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
 
             }
         });
-
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter(this,
+//        Toast.makeText(this, ""+dates.get(1), Toast.LENGTH_SHORT).show();
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, dates);
 
         spinner.setAdapter(spinnerAdapter);
-
         spinner.setOnItemSelectedListener(this);
 
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        ref.child(dates.get(position)).addListenerForSingleValueEvent(new ValueEventListener() {
+        Toast.makeText(this, ""+position, Toast.LENGTH_LONG).show();
+/*        ref.child(dates.get(position)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 values.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String value = ds.getValue(String.class);
                     values.add(value);
                 }
+                ArrayAdapter<String> listAdapter2 = new ArrayAdapter(AlphaSQ.this,
+                        android.R.layout.simple_spinner_item, fruit);
+                listView.setAdapter(listAdapter2);
                 ArrayAdapter<String> listAdapter = new ArrayAdapter(AlphaSQ.this,
                         android.R.layout.simple_spinner_item, values);
                 listView.setAdapter(listAdapter);
@@ -94,8 +97,7 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
-
+        });*/
     }
 
     @Override
