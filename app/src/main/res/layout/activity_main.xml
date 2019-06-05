@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@drawable/images"
+    android:background="@drawable/wallpaper"
     tools:context=".MainActivity">
 
     <Space
@@ -19,6 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:textColor="#FF1E32A2"
         android:text="TextView" />
 
     <LinearLayout
@@ -37,6 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="#FF1E32A2"
+            android:textSize="25dp"
             android:text="distance" />
 
         <Space
@@ -46,9 +52,12 @@
 
         <TextView
             android:id="@+id/des2"
+            android:textSize="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="#FF1E32A2"
             android:text="distance" />
 
         <Space
@@ -64,13 +73,14 @@
 
     <SeekBar
         android:id="@+id/sk1"
-        android:rotation="-90"
+        android:layout_width="match_parent"
 
+        android:layout_height="75dp"
+        android:layout_weight="3"
         android:max="180"
         android:progress="90"
-        android:layout_weight="3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:progressTint="#FF1E32A2"
+        android:rotation="-90" />
 
     <Space
         android:layout_weight="1"
@@ -84,15 +94,18 @@
         android:progress="90"
         android:layout_weight="1"
         android:layout_width="match_parent"
+        android:progressTint="#FF1E32A2"
         android:layout_height="0dp" />
 
     <Button
-        android:layout_width="76dp"
-        android:layout_height="7dp"
+        android:layout_width="74dp"
+        android:layout_height="36dp"
         android:layout_weight="1"
         android:background="@drawable/button_bg_round"
         android:onClick="rec"
-        android:text="Record" />
+        android:text="Record"
+
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button"
@@ -100,6 +113,8 @@
         android:onClick="toblue"
         android:layout_height="4dp"
         android:layout_weight="1"
+        android:textStyle="bold"
+        android:textColor="#FAF7F7"
         android:background="@drawable/button_bg_rounded_corners"
         android:text="bluetooth Connection" />
 

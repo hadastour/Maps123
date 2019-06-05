@@ -31,10 +31,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.nio.charset.Charset;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -60,11 +63,15 @@ public class MainActivity extends AppCompatActivity {
     int[] values;
      int mone;
 
+
+
     TextView tvAlarmPrompt;
     TextView tv;
     int i, rngl, rngr, head;
     byte elev;
     String strngl, strngr, sthead, stelev, strAnotherOne;
+
+
 
 
 
@@ -87,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         mRootRef = FirebaseDatabase.getInstance().getReference();
         dbRecRef=mRootRef.child("dataRec");
 
+
         rngl=0;
         rngr=200;
         head=0;
@@ -96,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
         message = new StringBuilder();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReciver, new IntentFilter("incomingMessage"));
+
 
 
 
@@ -228,8 +237,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void rec(View view) {
-        String date = new SimpleDateFormat("MMddyyyy", Locale.getDefault()).format(new Date());
-//        dbRecRef.setValue(date);
+        DateFormat df = new SimpleDateFormat("yy/dd/MM HH:mm:ss");
+        Date dateobj = new Date();
+        String date=""+df.format(dateobj);
         mone=1;
       final DatabaseReference dbDatarecRef = dbRecRef.child(date);
         new CountDownTimer(5000, 100) {

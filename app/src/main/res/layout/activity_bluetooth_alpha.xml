@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/images"
+    android:background="@drawable/wallpaper"
     tools:context=".BluetoothAlpha">
 
 
@@ -17,6 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:textColor="#FAF7F7"
+        android:textStyle="bold"
+
         android:background="@drawable/button_bg_rounded_corners"
         android:text="ON/OFF" />
 
@@ -26,6 +29,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:textColor="#FAF7F7"
+        android:textStyle="bold"
+
         android:background="@drawable/button_bg_rounded_corners"
         android:onClick="btnEnableDisable_Discoverable"
         android:text="Enable Discoverable" />
@@ -34,6 +40,8 @@
         android:id="@+id/btnFindUnpairedDevices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#FAF7F7"
         android:background="@drawable/button_bg_rounded_corners"
         android:onClick="btnDiscover"
         android:text="Discover" />
@@ -41,7 +49,7 @@
     <ListView
         android:id="@+id/lvNewDevices"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="110dp"
         android:layout_below="@+id/btnStartConnection"
         android:layout_marginTop="15dp"
         android:cacheColorHint="#8AF3FF" />
@@ -49,6 +57,8 @@
     <Button
         android:id="@+id/btnStartConnection"
         android:layout_width="104dp"
+        android:textStyle="bold"
+
         android:layout_height="101dp"
         android:background="@drawable/button_bg_round"
         android:text="Start Connection" />
@@ -64,7 +74,8 @@
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:textStyle="bold"
+        android:textColor="#FAF7F7"
         android:background="@drawable/button_bg_rounded_corners"
         android:text="SEND" />
 
@@ -72,6 +83,8 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+
         android:text="TextView" />
 
     <Button
@@ -80,6 +93,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_bg_rounded_corners"
         android:onClick="tomain2"
+        android:textStyle="bold"
+        android:textColor="#FAF7F7"
         android:text="Button" />
 
 </LinearLayout>
