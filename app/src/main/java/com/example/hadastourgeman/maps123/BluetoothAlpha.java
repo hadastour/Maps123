@@ -39,7 +39,6 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
 
     Button btnStartConnection;
     Button btnSend;
-    Button tomain;
 
     Intent t;
     EditText etSend;
@@ -200,9 +199,7 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
         textView= (TextView) findViewById(R.id.textView);
 
         btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
-        btnSend = (Button) findViewById(R.id.btnSend);
-        tomain = (Button) findViewById(R.id.tomain);
-        etSend = (EditText) findViewById(R.id.editText);
+        //btnSend = (Button) findViewById(R.id.btnSend);
         message=new StringBuilder();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReciver , new IntentFilter("incomingMessage"));
 
@@ -230,14 +227,7 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
             }
         });
 
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                byte[] bytes = etSend.getText().toString().getBytes(Charset.defaultCharset());
-                mBluetoothConnection.write(bytes);
-                etSend.setText("");
-            }
-        });
+
 
     }
 
@@ -372,11 +362,7 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
         }
     }
 
-    public void tomain2(View view) {
-        Intent n=new Intent(this,AlphaSQ.class);
-        startActivity(n);
-        Toast.makeText(BluetoothAlpha.this, "bye", Toast.LENGTH_LONG).show();
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

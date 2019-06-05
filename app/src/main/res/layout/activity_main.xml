@@ -80,6 +80,7 @@
         android:max="180"
         android:progress="90"
         android:progressTint="#FF1E32A2"
+        android:thumbTint="@color/cast_expanded_controller_background_color"
 
         android:rotation="-90" />
 

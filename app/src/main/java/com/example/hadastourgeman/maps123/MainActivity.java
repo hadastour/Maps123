@@ -90,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
         dbRecRef = mRootRef.child("dataRec");
+        DateFormat df = new SimpleDateFormat("yy/dd/MM HH:mm:ss");
+        Date dateobj = new Date();
+        String date = "" + df.format(dateobj);
+        tv.setText(""+date);
+
 
 
         rngl = 0;
@@ -124,46 +129,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return arr;
     }
-    //  public void getArray(String Text)
-    //{
 
 
-    //      }
-    //}
 
 
-        /*BroadcastReceiver mReciver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String Text = intent.getStringExtra("theMessage");
-
-                cancelAlarm();
-                start();
-
-                message.append(Text + "/");
-
-                 textView.setText(message);
-
-                while (Text != null) {
-                    if (check(Text))
-                    {
-                        values = buildArray(Text);
-                        des1.setText(values[0]);
-                        des2.setText(values[1]);
-                        sk1.setProgress(values[2]);
-                        sk2.setProgress(values[3]);
-
-
-                    }
-                }
-            }
-        };*/
-
-
-    public void tosq(View view) {
-        Intent n = new Intent(this, AlphaSQ.class);
-        startActivity(n);
-    }
 
 
     TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
@@ -213,10 +182,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void rec(View view) {
         DateFormat df = new SimpleDateFormat("yy/dd/MM HH:mm:ss");
+
         Date dateobj = new Date();
         String date = "" + df.format(dateobj);
         mone = 1;
-        final DatabaseReference dbDatarecRef = dbRecRef.child(date);
+        final DatabaseReference dbDatarecRef = dbRecRef.child("" + df.format(dateobj));
         new CountDownTimer(5000, 100) {
 
             public void onTick(long millisUntilFinished) {
@@ -237,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
     public void toblue(View view) {
         Intent n = new Intent(this, BluetoothAlpha.class);
         startActivity(n);
-        Toast.makeText(MainActivity.this, "hello", Toast.LENGTH_LONG).show();
     }
 
     BroadcastReceiver mReciver = new BroadcastReceiver() {
@@ -251,7 +220,6 @@ public class MainActivity extends AppCompatActivity {
 
             tv.setText("" + Text);
 
-            Toast.makeText(MainActivity.this, Text, Toast.LENGTH_LONG).show();
             if (check(Text)) {
                 values = buildArray(Text);
                 des1.setText("" + values[0]);
