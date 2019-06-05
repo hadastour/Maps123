@@ -80,6 +80,7 @@
         android:max="180"
         android:progress="90"
         android:progressTint="#FF1E32A2"
+
         android:rotation="-90" />
 
     <Space
@@ -95,6 +96,7 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:progressTint="#FF1E32A2"
+        android:thumbTint="@color/cast_expanded_controller_background_color"
         android:layout_height="0dp" />
 
     <Button

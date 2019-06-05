@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menumain"
+        android:title="MAIN"
+        android:orderInCategory="100"/>
+
+    <item
+        android:id="@+id/menubluetoth"
+        android:title="BLUETOOTH"
+        android:orderInCategory="200"/>
+    <item
+        android:id="@+id/menurec"
+        android:title="RECORDS"
+        android:orderInCategory="300"/>
+    <item
+        android:id="@+id/menucredits"
+        android:title="CREDITS"
+        android:orderInCategory="400"/>
+
+</menu>

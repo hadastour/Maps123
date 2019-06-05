@@ -15,6 +15,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -52,17 +54,16 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference mRootRef;
     DatabaseReference dbRecRef;
     String string = "1";
-    public StringBuilder message ;
+    public StringBuilder message;
     BluetoothConnectionService mBluetoothConnection;
     TextView des1;
     TextView des2;
     SeekBar sk1;
     SeekBar sk2;
-    String m="11";
+    String m = "11";
     final static int RQS_TIME = 1;
     int[] values;
-     int mone;
-
+    int mone;
 
 
     TextView tvAlarmPrompt;
@@ -72,44 +73,33 @@ public class MainActivity extends AppCompatActivity {
     String strngl, strngr, sthead, stelev, strAnotherOne;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv= (TextView) findViewById(R.id.tv);
-        des1= (TextView) findViewById(R.id.des1);
-        des2= (TextView) findViewById(R.id.des2);
+        tv = (TextView) findViewById(R.id.tv);
+        des1 = (TextView) findViewById(R.id.des1);
+        des2 = (TextView) findViewById(R.id.des2);
         //textView= (TextView) findViewById(R.id.textView);
-        sk1= (SeekBar) findViewById(R.id.sk1);
-        sk2= (SeekBar) findViewById(R.id.sk2);
+        sk1 = (SeekBar) findViewById(R.id.sk1);
+        sk2 = (SeekBar) findViewById(R.id.sk2);
         Calendar calNow = Calendar.getInstance();
         Calendar calSet = (Calendar) calNow.clone();
 
 
-
         mRootRef = FirebaseDatabase.getInstance().getReference();
-        dbRecRef=mRootRef.child("dataRec");
+        dbRecRef = mRootRef.child("dataRec");
 
 
-        rngl=0;
-        rngr=200;
-        head=0;
-        elev=-90;
-
+        rngl = 0;
+        rngr = 200;
+        head = 0;
+        elev = -90;
 
 
         message = new StringBuilder();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReciver, new IntentFilter("incomingMessage"));
-
-
-
-
-
-
 
 
     }
@@ -118,8 +108,7 @@ public class MainActivity extends AppCompatActivity {
     public static boolean check(String s) {
         if (s.length() != 8)
             return false;
-        for (int i = 0 ; i < 8; i++)
-        {
+        for (int i = 0; i < 8; i++) {
             char c = s.charAt(i);
             if (!((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')))
                 return false;
@@ -127,24 +116,20 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public int[] buildArray(String s)
-    {
+    public int[] buildArray(String s) {
         int[] arr = new int[4];
-        for (int i = 0; i < 8; i+=2)
-        {
-            String num = ""+s.charAt(i) + s.charAt(i+1);
-            arr[i/2] = Integer.parseInt(num , 16);
+        for (int i = 0; i < 8; i += 2) {
+            String num = "" + s.charAt(i) + s.charAt(i + 1);
+            arr[i / 2] = Integer.parseInt(num, 16);
         }
         return arr;
     }
-  //  public void getArray(String Text)
+    //  public void getArray(String Text)
     //{
 
 
-
-
-      //      }
-        //}
+    //      }
+    //}
 
 
         /*BroadcastReceiver mReciver = new BroadcastReceiver() {
@@ -175,16 +160,10 @@ public class MainActivity extends AppCompatActivity {
         };*/
 
 
-    public void tosq (View view){
+    public void tosq(View view) {
         Intent n = new Intent(this, AlphaSQ.class);
         startActivity(n);
     }
-
-
-
-
-
-
 
 
     TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
@@ -194,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
             Calendar calNow = Calendar.getInstance();
             Calendar calSet = (Calendar) calNow.clone();
-            calSet.set(Calendar.SECOND, calSet.get(Calendar.SECOND)+2);
+            calSet.set(Calendar.SECOND, calSet.get(Calendar.SECOND) + 2);
             if (calSet.compareTo(calNow) <= 0) {
                 calSet.add(Calendar.DATE, 1);
             }
@@ -226,22 +205,18 @@ public class MainActivity extends AppCompatActivity {
     private void start() {
         Calendar calNow = Calendar.getInstance();
         Calendar calSet = (Calendar) calNow.clone();
-        calSet.set(Calendar.SECOND, calSet.get(Calendar.SECOND)+2);
+        calSet.set(Calendar.SECOND, calSet.get(Calendar.SECOND) + 2);
         setAlarm(calSet);
 
     }
 
 
-
-
-
-
     public void rec(View view) {
         DateFormat df = new SimpleDateFormat("yy/dd/MM HH:mm:ss");
         Date dateobj = new Date();
-        String date=""+df.format(dateobj);
-        mone=1;
-      final DatabaseReference dbDatarecRef = dbRecRef.child(date);
+        String date = "" + df.format(dateobj);
+        mone = 1;
+        final DatabaseReference dbDatarecRef = dbRecRef.child(date);
         new CountDownTimer(5000, 100) {
 
             public void onTick(long millisUntilFinished) {
@@ -256,21 +231,11 @@ public class MainActivity extends AppCompatActivity {
         }.start();
 
 
-
-
-               }
-
-
-
-
-
-
-
-
+    }
 
 
     public void toblue(View view) {
-        Intent n=new Intent(this,BluetoothAlpha.class);
+        Intent n = new Intent(this, BluetoothAlpha.class);
         startActivity(n);
         Toast.makeText(MainActivity.this, "hello", Toast.LENGTH_LONG).show();
     }
@@ -280,21 +245,55 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String Text = intent.getStringExtra("theMessage");
 
-                message.setLength(0);
-                message.append(Text + "");
+            message.setLength(0);
+            message.append(Text + "");
 
 
-                tv.setText(""+Text);
+            tv.setText("" + Text);
 
-           Toast.makeText(MainActivity.this, Text, Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, Text, Toast.LENGTH_LONG).show();
             if (check(Text)) {
                 values = buildArray(Text);
-                des1.setText(""+values[0]);
-               des2.setText(""+values[1]);
+                des1.setText("" + values[0]);
+                des2.setText("" + values[1]);
                 sk1.setProgress(values[2]);
                 sk2.setProgress(values[3]);
-     }
+            }
         }
     };
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main, menu);
+
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        String st = item.getTitle().toString();
+
+        if (st.equals("MAIN")) {
+            Intent p = new Intent(this, MainActivity.class);
+            startActivity(p);
+        }
+        if (st.equals("BLUETOOTH")) {
+            Intent p = new Intent(this, BluetoothAlpha.class);
+            startActivity(p);
+        }
+        if (st.equals("RECORDS")) {
+            Intent p = new Intent(this, AlphaSQ.class);
+            startActivity(p);
+        }
+        if (st.equals("CREDITS")) {
+            Intent p = new Intent(this, Credits.class);
+            startActivity(p);
+        }
+
+        return true;
+        }
+
 }
 

@@ -13,6 +13,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -375,4 +377,37 @@ public class BluetoothAlpha  extends AppCompatActivity implements AdapterView.On
         startActivity(n);
         Toast.makeText(BluetoothAlpha.this, "bye", Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main, menu);
+
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        String st = item.getTitle().toString();
+
+        if (st.equals("MAIN")) {
+            Intent p = new Intent(this, MainActivity.class);
+            startActivity(p);
+        }
+        if (st.equals("BLUETOOTH")) {
+            Intent p = new Intent(this, BluetoothAlpha.class);
+            startActivity(p);
+        }
+        if (st.equals("RECORDS")) {
+            Intent p = new Intent(this, AlphaSQ.class);
+            startActivity(p);
+        }
+        if (st.equals("CREDITS")) {
+            Intent p = new Intent(this, Credits.class);
+            startActivity(p);
+        }
+
+        return true;
+    }
+
 }
