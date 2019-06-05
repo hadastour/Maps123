@@ -7,45 +7,51 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@drawable/images"
     tools:context=".BluetoothAlpha">
 
 
     <Button
-        android:text="ON/OFF"
+        android:id="@+id/btnONOFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:id="@+id/btnONOFF"/>
+        android:background="@drawable/button_bg_rounded_corners"
+        android:text="ON/OFF" />
 
     <Button
-        android:text="Enable Discoverable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/btnDiscoverable_on_off"
-        android:onClick="btnEnableDisable_Discoverable"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:onClick="btnEnableDisable_Discoverable"
+        android:text="Enable Discoverable" />
+
+    <Button
         android:id="@+id/btnFindUnpairedDevices"
-        android:text="Discover"
-        android:onClick="btnDiscover"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:onClick="btnDiscover"
+        android:text="Discover" />
 
     <ListView
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/btnStartConnection"
+        android:id="@+id/lvNewDevices"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:id="@+id/lvNewDevices"/>
+        android:layout_below="@+id/btnStartConnection"
+        android:layout_marginTop="15dp"
+        android:cacheColorHint="#8AF3FF" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/btnStartConnection"
-        android:text="Start Connection"/>
+        android:layout_width="104dp"
+        android:layout_height="101dp"
+        android:background="@drawable/button_bg_round"
+        android:text="Start Connection" />
 
     <EditText
         android:layout_width="250dp"
@@ -55,11 +61,12 @@
         android:id="@+id/editText"/>
 
     <Button
+        android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SEND"
-        android:id="@+id/btnSend"
-        />
+
+        android:background="@drawable/button_bg_rounded_corners"
+        android:text="SEND" />
 
     <TextView
         android:id="@+id/textView"
@@ -71,6 +78,7 @@
         android:id="@+id/tomain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_bg_rounded_corners"
         android:onClick="tomain2"
         android:text="Button" />
 

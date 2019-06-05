@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/images"
     android:gravity="center"
     tools:context=".AlphaSQ">
 
@@ -13,8 +14,9 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_height="0dp" />
+        android:background="#611C398B" />
 
     <ListView
         android:id="@+id/listView"
