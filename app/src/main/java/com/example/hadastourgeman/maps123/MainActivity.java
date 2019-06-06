@@ -102,14 +102,13 @@ public class MainActivity extends AppCompatActivity {
         head = 0;
         elev = -90;
 
-
         message = new StringBuilder();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReciver, new IntentFilter("incomingMessage"));
 
 
     }
 
-
+    // check the information from bluetooth
     public static boolean check(String s) {
         if (s.length() != 8)
             return false;
@@ -121,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //build array from the bluetooth information
     public int[] buildArray(String s) {
         int[] arr = new int[4];
         for (int i = 0; i < 8; i += 2) {
@@ -180,17 +180,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //record for 5 sec information (from bluetooth connection)
     public void rec(View view) {
         DateFormat df = new SimpleDateFormat("yy_dd_MM HH_mm_ss");
-
         Date dateobj = new Date();
-        String date = "" + df.format(dateobj);
         mone = 1;
         final DatabaseReference dbDatarecRef = dbRecRef.child("" + df.format(dateobj));
         new CountDownTimer(5000, 100) {
 
             public void onTick(long millisUntilFinished) {
-
                 dbDatarecRef.child("" + mone).setValue("" + message);
                 mone++;
             }
@@ -209,6 +207,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(n);
     }
 
+
+    // recive information from bluetooth
     BroadcastReceiver mReciver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -231,6 +231,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+
+    //optionmenu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 

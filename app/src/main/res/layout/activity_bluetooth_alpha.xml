@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#DCF1FD"
     android:gravity="center"
-    android:background="@drawable/wallpaper"
+    android:orientation="vertical"
     tools:context=".BluetoothAlpha">
 
 
@@ -17,11 +16,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:textColor="#FAF7F7"
-        android:textStyle="bold"
-
         android:background="@drawable/button_bg_rounded_corners"
-        android:text="ON/OFF" />
+        android:text="ON/OFF"
+
+        android:textColor="#FAF7F7"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnDiscoverable_on_off"
@@ -29,22 +28,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="#FAF7F7"
-        android:textStyle="bold"
-
         android:background="@drawable/button_bg_rounded_corners"
         android:onClick="btnEnableDisable_Discoverable"
-        android:text="Enable Discoverable" />
+
+        android:text="Enable Discoverable"
+        android:textColor="#FAF7F7"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnFindUnpairedDevices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="#FAF7F7"
         android:background="@drawable/button_bg_rounded_corners"
         android:onClick="btnDiscover"
-        android:text="Discover" />
+        android:text="Discover"
+        android:textColor="#FAF7F7"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/lvNewDevices"
@@ -57,20 +56,17 @@
     <Button
         android:id="@+id/btnStartConnection"
         android:layout_width="104dp"
-        android:textStyle="bold"
-
         android:layout_height="101dp"
+
         android:background="@drawable/button_bg_round"
-        android:text="Start Connection" />
-
-
+        android:text="Start Connection"
+        android:textStyle="bold" />
 
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
 </LinearLayout>

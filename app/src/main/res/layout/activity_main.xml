@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@drawable/wallpaper"
+    android:background="#DCF1FD"
     tools:context=".MainActivity">
 
     <Space
