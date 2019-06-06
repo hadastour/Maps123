@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void rec(View view) {
-        DateFormat df = new SimpleDateFormat("yy/dd/MM HH:mm:ss");
+        DateFormat df = new SimpleDateFormat("yy_dd_MM HH_mm_ss");
 
         Date dateobj = new Date();
         String date = "" + df.format(dateobj);
