@@ -212,8 +212,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String Text = intent.getStringExtra("theMessage");
-            cancelAlarm();
-            start();
+
 
             message.setLength(0);
             message.append(Text + "");
