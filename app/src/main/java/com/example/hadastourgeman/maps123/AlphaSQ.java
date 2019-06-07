@@ -33,11 +33,10 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
     Spinner spinner;
     ListView listView;
     DatabaseReference ref;
-
+    String n=" ";
     List<String> dates=new ArrayList<>();
     List<String> values;
-    String[] fruit = {"Apple", "Banana", "Orange", "Grapes"};
-
+    int[] arr = new int[4];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,11 +82,18 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
                 values.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String value = ds.getValue(String.class);
+
+                    for (int i = 0; i < 8; i += 2) {
+                        String num = "" + value.charAt(i) + value.charAt(i + 1);
+                        arr[i / 2] = Integer.parseInt(num, 16);
+                        value= value +"  "+arr[i / 2];
+                    }
+
                     values.add(value);
                 }
-                ArrayAdapter<String> listAdapter2 = new ArrayAdapter(AlphaSQ.this,
-                        android.R.layout.simple_spinner_item, fruit);
-                listView.setAdapter(listAdapter2);
+
+
+
                 ArrayAdapter<String> listAdapter = new ArrayAdapter(AlphaSQ.this,
                         android.R.layout.simple_spinner_item, values);
                 listView.setAdapter(listAdapter);
