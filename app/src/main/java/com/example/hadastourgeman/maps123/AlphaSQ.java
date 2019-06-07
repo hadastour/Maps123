@@ -33,7 +33,7 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
     Spinner spinner;
     ListView listView;
     DatabaseReference ref;
-    String n=" ";
+
     List<String> dates=new ArrayList<>();
     List<String> values;
     int[] arr = new int[4];
@@ -50,6 +50,7 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
         dates = new ArrayList<>();
         values = new ArrayList<>();
 
+        //read the information from firebase
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -65,6 +66,7 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
         });
         dates.add("Choose date:");
 
+        //show the dates in spinner
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, dates);
 
@@ -73,6 +75,7 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
 
     }
 
+    //read the information below the selected date from firebase and translate.
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         ref.child(dates.get(position)).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -93,7 +96,7 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
                 }
 
 
-
+               //put the information in listview
                 ArrayAdapter<String> listAdapter = new ArrayAdapter(AlphaSQ.this,
                         android.R.layout.simple_spinner_item, values);
                 listView.setAdapter(listAdapter);
@@ -111,7 +114,7 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
     }
 
 
-
+//option menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 

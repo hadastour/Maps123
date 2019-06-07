@@ -53,14 +53,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     DatabaseReference mRootRef;
     DatabaseReference dbRecRef;
-    String string = "1";
     public StringBuilder message;
-    BluetoothConnectionService mBluetoothConnection;
+
     TextView des1;
     TextView des2;
     SeekBar sk1;
     SeekBar sk2;
-    String m = "11";
     final static int RQS_TIME = 1;
     int[] values;
     int mone;
@@ -68,9 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvAlarmPrompt;
     TextView tv;
-    int i, rngl, rngr, head;
+    int rngl, rngr, head;
     byte elev;
-    String strngl, strngr, sthead, stelev, strAnotherOne;
 
 
     @Override
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.tv);
         des1 = (TextView) findViewById(R.id.des1);
         des2 = (TextView) findViewById(R.id.des2);
-        //textView= (TextView) findViewById(R.id.textView);
+
         sk1 = (SeekBar) findViewById(R.id.sk1);
         sk2 = (SeekBar) findViewById(R.id.sk2);
         Calendar calNow = Calendar.getInstance();
@@ -162,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 pendingIntent);
     }
 
+    //cancel alarm
     private void cancelAlarm() {
         tvAlarmPrompt.setText("Cancel!");
         Intent intent = new Intent(this, AlarmReceiver.class);
@@ -171,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
         alarmManager.cancel(pendingIntent);
     }
 
+    //start alarm
     private void start() {
         Calendar calNow = Calendar.getInstance();
         Calendar calSet = (Calendar) calNow.clone();
@@ -213,6 +212,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String Text = intent.getStringExtra("theMessage");
+            cancelAlarm();
+            start();
 
             message.setLength(0);
             message.append(Text + "");
