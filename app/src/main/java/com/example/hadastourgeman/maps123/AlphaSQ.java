@@ -56,17 +56,16 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String date = ds.getKey();
-                    Toast.makeText(AlphaSQ.this, date, Toast.LENGTH_LONG).show();
                     dates.add(date);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
-//        Toast.makeText(this, ""+dates.get(1), Toast.LENGTH_SHORT).show();
+        dates.add("Choose date:");
+
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, dates);
 
@@ -77,8 +76,7 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this, ""+position, Toast.LENGTH_LONG).show();
-/*        ref.child(dates.get(position)).addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.child(dates.get(position)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -97,15 +95,16 @@ public class AlphaSQ extends AppCompatActivity implements AdapterView.OnItemSele
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
-        });*/
+        });
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
